@@ -1,0 +1,6 @@
+https://javascript.plainenglish.io/how-to-include-spotify-authorization-in-your-react-app-577b63138fd7
+
+https://flask.palletsprojects.com/en/2.2.x/quickstart/#
+
+
+https://tekore.readthedocs.io/en/stable/getting_started.html
