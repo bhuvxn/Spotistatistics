@@ -1,8 +1,8 @@
-import React from "react";
-import Header from "./Header";
-const LoginScreen = () => {
-  //add function for user redirect to home page after login
-  const redirecturi = "http://localhost:3000";
+import React from 'react'
+
+
+const Login = () => {
+    const redirecturi = "http://localhost:3000";
   const authEndpoint = "https://accounts.spotify.com/authorize";
   const clientId = "5791e72126494efa9ca3037e8cc03591";
   const scopes = [
@@ -15,7 +15,6 @@ const LoginScreen = () => {
   const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirecturi}&scope=${scopes.join(
     "%20"
   )}&response_type=token&show_dialog=true`;
-  const [loggedIn, setLoggedin] = React.useState(false);
   const getTokensFromUrl = () => {
     return window.location.hash
       .substring(1)
@@ -33,28 +32,21 @@ const LoginScreen = () => {
     if (_token.access_token) {
       localStorage.setItem("token", _token.access_token);
       window.location.href = "/";
-      setLoggedin(true);
+    
     }
   };
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-    setLoggedin(false);
-  };
-
-  const isLoggedIn = () => {
-    return localStorage.getItem("token") ? true : false;
-  };
-  
   return (
-    <div>
-    <div className="bg-black text-green-500 min-h-screen flex items-center justify-center">
-        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
-          Login with Spotify
+    <div className="flex flex-col md:flex-row h-screen">
+      <div className="bg-black flex-1 p-16 flex items-center justify-center md:justify-end">
+        <button className="bg-green-500 rounded-full px-8 py-4 font-medium shadow-md hover:shadow-lg" onClick = {handleLogin}>
+          Log in with Spotify
         </button>
+      </div>
+      <div className="bg-gray-200 flex-1 p-16 flex items-center justify-center">
+        <img src ="https://i.scdn.co/image/ab6761610000e5eb39e849fc23f75680e023e004" alt=""></img>
+      </div>
     </div>
-    </div>
-  );
-};
+  )
+}
 
-export default LoginScreen;
+export default Login

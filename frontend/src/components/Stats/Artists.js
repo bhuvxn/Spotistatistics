@@ -4,6 +4,8 @@ const Artists = () => {
   var spotifyApi = new Spotify();
   if (localStorage.getItem('token')) {
     spotifyApi.setAccessToken(localStorage.getItem('token'));
+    //hide token from url
+    window.history.pushState({}, document.title, "/" + window.location.pathname.split('/')[1]);
   }
   const [artists, setArtists] = React.useState([]);
   spotifyApi.getMyTopArtists()
@@ -15,6 +17,10 @@ const Artists = () => {
     });
     
   return (
+
+
+    <div className = "bg-black">
+    <div className="text-white text-4xl font-mono pt-3 text- text-center"> Your Top Artists</div>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
     {artists.map((artist) => (
       <div key={artist.id} className="bg-white rounded-lg shadow p-4">
@@ -26,6 +32,7 @@ const Artists = () => {
         <p className="text-lg font-medium">{artist.name}</p>
       </div>
     ))}
+  </div>
   </div>
   )
 }
