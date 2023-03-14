@@ -1,6 +1,18 @@
 import React from 'react';
 
 const Header = () => {
+
+
+  const [token, setToken] = React.useState(window.localStorage.getItem('token'));
+  const [user, setUser] = React.useState(window.localStorage.getItem('user'));
+  // logout function
+  const logout = () => {
+    window.localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+  //if user is logged in, show logout button
+  
+
   return (
     <div>
     <header className="bg-black text-green-500 flex justify-between items-center p-4">
@@ -15,9 +27,7 @@ const Header = () => {
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-4 hover:bg-green-600">Top Artists</button>
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-4 hover:bg-green-600">Top Songs</button>
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Top Albums</button>
-        
       </div>
-      
     </header>
     </div>
   );
