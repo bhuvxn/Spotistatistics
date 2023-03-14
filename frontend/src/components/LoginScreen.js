@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "./Header";
 const LoginScreen = () => {
   //add function for user redirect to home page after login
   const redirecturi = "http://localhost:3000";
@@ -46,12 +47,12 @@ const LoginScreen = () => {
   };
   
   return (
+    <div>
     <div className="bg-black text-green-500 min-h-screen flex items-center justify-center">
-       {isLoggedIn ? <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
-          Logout of spotify
-        </button>: <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
+        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
           Login with Spotify
-        </button>}
+        </button>
+    </div>
     </div>
   );
 };
