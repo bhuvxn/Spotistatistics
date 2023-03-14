@@ -14,7 +14,7 @@ const LoginScreen = () => {
   const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirecturi}&scope=${scopes.join(
     "%20"
   )}&response_type=token&show_dialog=true`;
-
+  const [loggedIn, setLoggedin] = React.useState(false);
   const getTokensFromUrl = () => {
     return window.location.hash
       .substring(1)
@@ -32,7 +32,13 @@ const LoginScreen = () => {
     if (_token.access_token) {
       localStorage.setItem("token", _token.access_token);
       window.location.href = "/";
+      setLoggedin(true);
     }
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+    setLoggedin(false);
   };
 
   const isLoggedIn = () => {
@@ -41,11 +47,12 @@ const LoginScreen = () => {
   
   return (
     <div className="bg-black text-green-500 min-h-screen flex items-center justify-center">
-      {isLoggedIn() ? null : (
-        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
+       {isLoggedIn ? <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
+          Logout of spotify
+        </button>: <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md text-md md:text-lg" onClick = {handleLogin}>
           Login with Spotify
-        </button>
-      )}
+        </button>}
+      
     </div>
   );
 };

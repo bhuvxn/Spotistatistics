@@ -3,9 +3,8 @@ import "./App.css";
 import LoginScreen from "./components/LoginScreen";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Artists from "./components/Artists";
+import Artists from "./components/Stats/Artists";
 function App() {
-
 
   return (
     <div className="bg-black">
