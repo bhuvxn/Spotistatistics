@@ -3,3 +3,6 @@
 3. polish login page
 4. add currently listening to in Header
 5. deploy 
+
+
+//okay one i can raise the header component up, or i can just put it in Main

@@ -3,7 +3,11 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Artists from "../components/Stats/Artists";
 const Main = () => {
-       
+    var Spotify = require("spotify-web-api-js");
+    var spotifyApi = new Spotify();
+    const [Statistic, SelectedStatistic] = React.useState(localStorage.getItem('statistic'));
+
+
     const getTokensFromUrl = () => {
         
         if (!window.location.hash) {
@@ -23,8 +27,9 @@ const Main = () => {
         const token = getTokensFromUrl();
         localStorage.setItem('token', token.access_token);
         window.location.hash = "";
+        localStorage.setItem('statistic', 'artists');
     }
-    //redirect user if no token and get tokens from url is null
+    //redirect user if no token and get tokens from url
     if(!localStorage.getItem('token') && getTokensFromUrl() == null){
         window.location.href = "/";
     }
@@ -34,16 +39,14 @@ const Main = () => {
   }
   //redirect to login if no token
   //extract token from url 
-
-
-
   return (
     
     <div className="bg-black">
         <Header/>
         <div>
         </div>
-        <Artists/>
+        {Statistic === "artists"  ? <Artists/> : null}
+        
         <Footer/>
     </div>
   )
