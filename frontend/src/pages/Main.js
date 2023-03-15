@@ -2,6 +2,7 @@ import React from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Artists from "../components/Stats/Artists";
+import Tracks from "../components/Stats/Tracks";
 const Main = () => {
     var Spotify = require("spotify-web-api-js");
     var spotifyApi = new Spotify();
@@ -55,6 +56,7 @@ const Main = () => {
         <div>
         </div>
          <Artists Statistic = {Stat} spotifyApi = {spotifyApi}/> 
+          <Tracks Statistic = {Stat} spotifyApi = {spotifyApi}/>
         <Footer/>
     </div>
   )
