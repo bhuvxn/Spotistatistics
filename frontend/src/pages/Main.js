@@ -5,14 +5,14 @@ import Artists from "../components/Stats/Artists";
 const Main = () => {
     var Spotify = require("spotify-web-api-js");
     var spotifyApi = new Spotify();
-    const [Statistic, SelectedStatistic] = React.useState(localStorage.getItem('statistic'));
 
-
+    const [Stat, SetStat] = React.useState(0);
     const getTokensFromUrl = () => {
         
-        if (!window.location.hash) {
-          return null;
-        }
+    if (!window.location.hash) {
+          window.localStorage.removeItem('token');
+          window.location.href = '/login'
+    }
         return window.location.hash
           .substring(1)
           .split("&")
@@ -37,16 +37,24 @@ const Main = () => {
   if (localStorage.getItem('token')) {
     window.history.pushState({}, document.title, "/" + window.location.pathname.split('/')[1]);
   }
-  //redirect to login if no token
-  //extract token from url 
+
+
+  //creating spotify api to pass to statistic components
+  spotifyApi.setAccessToken(localStorage.getItem('token'));
+
+  const handleStatChange = (event) => {
+    SetStat(event.target.value);
+  }
+  
+
+
   return (
     
     <div className="bg-black">
-        <Header/>
+        <Header Statistic={Stat} handleStatChange = {handleStatChange} spotifyApi = {spotifyApi} />
         <div>
         </div>
-        {Statistic === "artists"  ? <Artists/> : null}
-        
+         <Artists Statistic = {Stat} spotifyApi = {spotifyApi}/> 
         <Footer/>
     </div>
   )

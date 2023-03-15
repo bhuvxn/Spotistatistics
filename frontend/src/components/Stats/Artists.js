@@ -1,8 +1,5 @@
 import React from "react";
-const Artists = () => {
-  var Spotify = require("spotify-web-api-js");
-  var spotifyApi = new Spotify();
-  spotifyApi.setAccessToken(localStorage.getItem("token"));
+const Artists = ({Statistic, spotifyApi}) => {
   if (localStorage.getItem("token")) {
     window.history.pushState(
       {},
@@ -10,10 +7,12 @@ const Artists = () => {
       "/" + window.location.pathname.split("/")[1]
     );
   }
+
+  
+  //state variables for data from api
   const [artists, setArtists] = React.useState([]);
 
-
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem("token") && artists.length === 0) {
    spotifyApi.getMyTopArtists().then(
     function (data) {
       console.log("Top Artists", data.items);
@@ -24,7 +23,12 @@ const Artists = () => {
     }
   )}
 
+  //if tracks is selected, return nothing
+  if (Statistic === "tracks") {
+    return <div></div>;
+  }
   return (
+
     <div className="bg-black">
       <div className="text-white text-4xl font-mono pt-3 text- text-center">
         {" "}
