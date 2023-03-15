@@ -28,7 +28,7 @@ const Header = ({Statistic, handleStatChange, spotifyApi}) => {
     <header className="bg-black text-green-500 flex justify-between items-center p-4">
       <div className="flex items-center">
         <div className="mr-4">
-          <img src="https://via.placeholder.com/50x50" alt="User" className="w-10 h-10 rounded-full"/>
+          <img src="temp" alt="User" className="w-10 h-10 rounded-full"/>
         </div>
         <div className="text-white text-lg font-medium">{ProfileData.display_name}</div>
       </div>
@@ -36,7 +36,6 @@ const Header = ({Statistic, handleStatChange, spotifyApi}) => {
       <div className="flex items-center">
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-4 hover:bg-green-600" value = "artists"onClick={handleStatChange}>Top Artists</button>
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-4 hover:bg-green-600" value = "tracks" onClick={handleStatChange}>Top Songs</button>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-lg mr-4 hover:bg-green-600" value ="albums"onClick={handleStatChange}>Top Albums</button>
         <button className="bg-green-500 text-white px-4 py-2 rounded-lg" onClick ={logout}>Logout</button>
       </div>
     </header>
